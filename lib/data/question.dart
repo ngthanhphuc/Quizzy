@@ -40,5 +40,17 @@ final List<Question> questionsData = [
       ],
       answer: 1,
       feedback:
-          "The Product Owner is the sole person responsible for ordering the Product Backlog.")
+          "The Product Owner is the sole person responsible for ordering the Product Backlog."),
+  Question(
+      id: 3,
+      question: "What is the recommended size for a Scrum Team?",
+      options: [
+        "Minimum of 7.",
+        "9.",
+        "Typically 10 or fewer people.",
+        "7 plus or minus 2."
+      ],
+      answer: 2,
+      feedback:
+          "A Scrum Team is small enough to remain nimble and large enough to complete significant work within a Sprint, typically 10 or fewer people. Generally smaller teams communicate better and are more productive")
 ];

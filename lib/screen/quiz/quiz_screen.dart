@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizzy/data/question.dart';
+import 'package:quizzy/screen/result/result_screen.dart';
 import 'package:quizzy/themes/app_text_styles.dart';
 
 class QuizScreen extends StatefulWidget {
@@ -41,16 +42,18 @@ class _QuizScreenState extends State<QuizScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  ...question.options.map((option) => RadioListTile(
-                        title: Text(option),
-                        value: option,
-                        groupValue: _answers[_currentIndex],
-                        onChanged: (value) {
-                          setState(() {
-                            _answers[_currentIndex] = option;
-                          });
-                        },
-                      ))
+                  ...question.options.map(
+                    (option) => RadioListTile(
+                      title: Text(option),
+                      value: option,
+                      groupValue: _answers[_currentIndex],
+                      onChanged: (value) {
+                        setState(() {
+                          _answers[_currentIndex] = option;
+                        });
+                      },
+                    ),
+                  )
                 ],
               ),
             ),
@@ -58,10 +61,7 @@ class _QuizScreenState extends State<QuizScreen> {
               child: Container(
                 alignment: Alignment.bottomCenter,
                 child: ElevatedButton.icon(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => QuizScreen()));
-                  },
+                  onPressed: _handleNext,
                   label: Text('Next'),
                   icon: Icon(Icons.arrow_forward),
                 ),
@@ -69,6 +69,38 @@ class _QuizScreenState extends State<QuizScreen> {
             )
           ],
         ),
+      ),
+    );
+  }
+
+  void _handleNext() {
+    if (_answers[_currentIndex] == null) {
+      _showAlertDialog();
+      return;
+    }
+    if (_currentIndex < (questionsData.length - 1)) {
+      setState(() {
+        _currentIndex++;
+      });
+    } else {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => QuizResultScreen(),
+      ));
+    }
+  }
+
+  void _showAlertDialog() {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Warning'),
+        content: const Text('You must attempt all questions to continue'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'OK'),
+            child: const Text('OK'),
+          ),
+        ],
       ),
     );
   }
