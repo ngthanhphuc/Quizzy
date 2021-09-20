@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizzy/data/question.dart';
+import 'package:quizzy/screen/check/check_answers_screen.dart';
 
 class QuizResultScreen extends StatelessWidget {
   final Map<int, dynamic> answers;
@@ -79,6 +80,24 @@ class QuizResultScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  ElevatedButton.icon(
+                    icon: Icon(Icons.home),
+                    label: Text('Goto Home'),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                  ElevatedButton.icon(
+                    icon: Icon(Icons.check_circle_rounded),
+                    label: Text('Check Answers'),
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => CheckAnswersScreen(answers)));
+                    },
+                  ),
+                ],
+              )
             ],
           ),
         ),
