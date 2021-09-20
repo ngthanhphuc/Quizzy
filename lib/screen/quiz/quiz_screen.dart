@@ -84,7 +84,7 @@ class _QuizScreenState extends State<QuizScreen> {
       });
     } else {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => QuizResultScreen(),
+        builder: (context) => QuizResultScreen(answers: _answers),
       ));
     }
   }

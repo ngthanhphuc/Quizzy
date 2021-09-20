@@ -1,9 +1,9 @@
 class Question {
-  int id;
-  String question;
-  List<String> options;
-  int answer;
-  String feedback;
+  final int id;
+  final String question;
+  final List<String> options;
+  final String answer;
+  final String feedback;
 
   Question(
       {required this.id,
@@ -25,7 +25,7 @@ final List<Question> questionsData = [
         'Planning, Demonstration, Retrospective.',
         'Respect For People, Kaizen, Eliminating Waste.'
       ],
-      answer: 1,
+      answer: "Inspection, Transparency, Adaptation.",
       feedback:
           "Scrum is founded on empirical process control theory, or empiricism. Empiricism asserts that knowledge comes from experience and making decisions based on what is known.\nThree pillars uphold every implementation of empirical process control: transparency, inspection, and adaptation."),
   Question(
@@ -38,7 +38,7 @@ final List<Question> questionsData = [
         'The Developers.',
         'The CEO.'
       ],
-      answer: 1,
+      answer: "The Product Owner.",
       feedback:
           "The Product Owner is the sole person responsible for ordering the Product Backlog."),
   Question(
@@ -50,7 +50,7 @@ final List<Question> questionsData = [
         "Typically 10 or fewer people.",
         "7 plus or minus 2."
       ],
-      answer: 2,
+      answer: "Typically 10 or fewer people.",
       feedback:
           "A Scrum Team is small enough to remain nimble and large enough to complete significant work within a Sprint, typically 10 or fewer people. Generally smaller teams communicate better and are more productive")
 ];
